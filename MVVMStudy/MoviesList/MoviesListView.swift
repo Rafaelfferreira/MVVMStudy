@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MoviesListView.swift
 //  MVVMStudy
 //
 //  Created by Rafael Ferreira on 06/07/20.
@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MoviesListView: View {
     var body: some View {
-        Text("Hello, World!")
+        Text("MoviesListScreen")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MoviesListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MoviesListView()
     }
 }
