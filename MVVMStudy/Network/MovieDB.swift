@@ -17,7 +17,7 @@ class MovieDB: MovieService {
     private let baseAPIURL = "https://api.themoviedb.org/3/"
     private let urlSession = URLSession.shared
     
-    func fetchMovies(from endpoint: MovieListEndpoints, completion: @escaping (Result<MoviesList, MovieDBError>) -> ()) {
+    func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MoviesList, MovieDBError>) -> ()) {
         guard let url = URL(string: "\(baseAPIURL)/movie/\(endpoint.rawValue)") else {
             completion(.failure(.invalidEndpoint))
             return

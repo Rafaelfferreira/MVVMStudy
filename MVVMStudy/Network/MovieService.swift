@@ -9,13 +9,13 @@
 import Foundation
 
 protocol MovieService {
-    func fetchMovies(from endpoint: MovieListEndpoints, completion: @escaping (Result<MoviesList, MovieDBError>) -> ())
+    func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MoviesList, MovieDBError>) -> ())
     func fetchMovie(id: Int, completion: @escaping (Result<Movie, MovieDBError>) -> ())
     func searchMovie(query: String, completion: @escaping (Result<MoviesList, MovieDBError>) -> ())
 }
 
 //MARK: - Endpoints
-enum MovieListEndpoints: String, CaseIterable { // CaseIterable is a type that provides a collection of all its balues through .allCases
+enum MovieListEndpoint: String, CaseIterable { // CaseIterable is a type that provides a collection of all its balues through .allCases
     case nowPlaying = "now_playing"
     case popular
     
