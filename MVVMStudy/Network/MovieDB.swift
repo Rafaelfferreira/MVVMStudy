@@ -14,7 +14,7 @@ class MovieDB: MovieService {
     private init() {}
     
     private let apiKey = "af166938e8179fae26af7c4b9bf20b94"
-    private let baseAPIURL = "https://api.themoviedb.org/3/"
+    private let baseAPIURL = "https://api.themoviedb.org/3"
     private let urlSession = URLSession.shared
     
     func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MoviesList, MovieDBError>) -> ()) {
@@ -67,7 +67,7 @@ class MovieDB: MovieService {
         }
         
         //MARK: - Starting the request
-        urlSession.dataTask(with: finalURL) { [weak self] (data, response, error) in
+        urlSession.dataTask(with: finalURL, completionHandler:  { [weak self] (data, response, error) in
             guard let self = self else { return }
             if error != nil {
                 self.executeCompletionHandlerInMainThread(with: .failure(.apiError), completion: completion)
@@ -91,7 +91,7 @@ class MovieDB: MovieService {
                 self.executeCompletionHandlerInMainThread(with: .failure(.serializationError), completion: completion)
             }
             
-        }
+            }).resume()
     }
     
     private func executeCompletionHandlerInMainThread<D: Decodable>(with result: Result<D, MovieDBError>, completion: @escaping (Result<D, MovieDBError>) -> ()) {
